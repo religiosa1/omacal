@@ -4,6 +4,12 @@
 time format. I want it to show a small lightweight calendar instead, so I made 
 this.
 
+
+
+https://github.com/user-attachments/assets/4cd55de1-3694-413b-8cd8-15315deba2d0
+
+
+
 I don't want it to be a full-fledged web app, so it's 
 a [bubbletea](https://github.com/charmbracelet/bubbletea) TUI.
 
