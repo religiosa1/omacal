@@ -1,4 +1,4 @@
-module omacal
+module github.com/religiosa1/omacal
 
 go 1.26.3
 
