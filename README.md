@@ -57,8 +57,8 @@ windowrule {
   name = omacal
   match:class = (org.omarchy.omacal)
   float = on
-  move = (monitor_w*0.50-110) (32)
-  size = 220 180
+  move = (monitor_w*0.50-115) (32)
+  size = 230 174
   border_size = 1
 }
 ```

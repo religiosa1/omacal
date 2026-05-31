@@ -21,7 +21,8 @@ type Calendar struct {
 	// selected date
 	selectedDate time.Time
 	// month to display
-	displayMonth time.Time
+	displayMonth  time.Time
+	width, height int
 }
 
 func NewCalendar() *Calendar {
@@ -88,6 +89,8 @@ func (c *Calendar) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			c.displayMonth = addMonths(c.displayMonth, 1)
 			c.selectedDate = c.displayMonth.AddDate(0, 1, 0)
 		}
+	case tea.WindowSizeMsg:
+		c.width, c.height = msg.Width, msg.Height
 	case dayChangedMsg:
 		c.now = midnightDate(time.Now())
 		return c, tickTomorrow()
@@ -125,11 +128,17 @@ func (c *Calendar) View() tea.View {
 				st = st.Underline(true)
 			}
 			b.WriteString(st.Render(fmt.Sprintf("%2d", day)))
-			b.WriteByte(' ')
+			if x != daysInWeek-1 {
+				b.WriteByte(' ')
+			}
 		}
 		fmt.Fprintln(&b)
 	}
-	return tea.NewView(b.String())
+	content := b.String()
+	if c.width > 0 {
+		content = lipgloss.PlaceHorizontal(c.width, lipgloss.Center, content)
+	}
+	return tea.NewView(content)
 }
 
 func main() {
