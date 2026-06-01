@@ -138,7 +138,9 @@ func (c *Calendar) View() tea.View {
 	if c.width > 0 {
 		content = lipgloss.PlaceHorizontal(c.width, lipgloss.Center, content)
 	}
-	return tea.NewView(content)
+	v := tea.NewView(content)
+	v.AltScreen = true
+	return v
 }
 
 func main() {
